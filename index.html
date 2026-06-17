@@ -1,0 +1,3125 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Heritage Aira Holme — A Colonial Estate Since 1870 | Shimla</title>
+  <meta name="description"
+    content="Heritage Aira Holme — One of Shimla's oldest colonial heritage homestays, built in 1870. Experience royal living amidst the Himalayas in Kasumpti, Shimla.">
+
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500;600;700;900&family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400;1,500&family=Playfair+Display:ital,wght@0,400;0,500;0,700;0,900;1,400;1,500;1,700&family=Inter:wght@300;400;500&display=swap"
+    rel="stylesheet">
+
+  <!-- Lenis Smooth Scroll -->
+  <script src="https://unpkg.com/@studio-freight/lenis@1.0.42/dist/lenis.min.js"></script>
+  <!-- GSAP & ScrollTrigger -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollToPlugin.min.js"></script>
+
+  <style>
+    /* ============================================================
+   HERITAGE AIRA HOLME — AWWWARDS LEVEL CSS
+   ============================================================ */
+
+    :root {
+      --black: #090704;
+      --ink: #0d0a06;
+      --ink-deep: #0a0804;
+      --gold: #c4933a;
+      --gold-light: #e8c77a;
+      --gold-pale: #f5e9c8;
+      --cream: #f7f2e8;
+      --cream-dark: #ede5d4;
+      --warm: #d4b896;
+      --sienna: #8b5e3c;
+      --bark: #5c3d1e;
+      --parchment: #f2e9d6;
+      --text-light: #c8b99a;
+      --text-dim: #7a6347;
+      --white: #faf8f4;
+      --serif-display: 'Cinzel', serif;
+      --serif-body: 'Cormorant Garamond', serif;
+      --serif-head: 'Playfair Display', serif;
+      --sans: 'Inter', sans-serif;
+    }
+
+    *,
+    *::before,
+    *::after {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    html {
+      scroll-behavior: auto;
+      font-size: 16px;
+      -webkit-text-size-adjust: 100%;
+    }
+
+    body {
+      background: var(--ink);
+      color: var(--cream);
+      font-family: var(--serif-body);
+      font-size: 1.125rem;
+      font-weight: 300;
+      line-height: 1.75;
+      overflow-x: hidden;
+      cursor: none;
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+    }
+
+    @media (max-width: 768px) {
+      body { cursor: auto; }
+      #cursor, #cursor-ring { display: none; }
+    }
+
+    /* ── SMOOTH SCROLL CONTAINER ── */
+    html.lenis, html.lenis body {
+      height: auto;
+    }
+    .lenis.lenis-smooth {
+      scroll-behavior: auto !important;
+    }
+    .lenis.lenis-smooth [data-lenis-prevent] {
+      overscroll-behavior: contain;
+    }
+
+    /* ── CUSTOM CURSOR ── */
+    #cursor {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 12px;
+      height: 12px;
+      background: var(--gold);
+      border-radius: 50%;
+      pointer-events: none;
+      z-index: 99999;
+      transform: translate(-50%, -50%);
+      mix-blend-mode: screen;
+      transition: width .2s ease, height .2s ease, background .2s ease;
+      will-change: transform;
+      backface-visibility: hidden;
+    }
+
+    #cursor-ring {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 40px;
+      height: 40px;
+      border: 1px solid rgba(196, 147, 58, .5);
+      border-radius: 50%;
+      pointer-events: none;
+      z-index: 99998;
+      transform: translate(-50%, -50%);
+      transition: width .35s ease, height .35s ease, opacity .35s ease;
+      will-change: transform;
+      backface-visibility: hidden;
+    }
+
+    /* ── LOADER ── */
+    #loader {
+      position: fixed;
+      inset: 0;
+      z-index: 9999;
+      background: var(--ink-deep);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 2rem;
+    }
+
+    .loader-crest {
+      font-family: var(--serif-display);
+      font-size: clamp(1.5rem, 4vw, 2.5rem);
+      color: var(--gold);
+      letter-spacing: .4em;
+      text-transform: uppercase;
+      opacity: 0;
+      animation: loaderFade 1s ease .3s forwards;
+    }
+
+    .loader-line {
+      width: 160px;
+      height: 1px;
+      background: rgba(196, 147, 58, .3);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .loader-line::after {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: -100%;
+      width: 100%;
+      height: 100%;
+      background: var(--gold);
+      animation: loaderBar 2s ease .5s forwards;
+    }
+
+    .loader-year {
+      font-family: var(--serif-display);
+      font-size: clamp(4rem, 12vw, 8rem);
+      color: var(--gold);
+      letter-spacing: .1em;
+      font-weight: 600;
+      opacity: 0;
+      animation: loaderFade 1s ease .8s forwards;
+      text-shadow: 0 0 80px rgba(196, 147, 58, .3);
+    }
+
+    .loader-subtitle {
+      font-family: var(--serif-body);
+      font-size: 1rem;
+      color: var(--text-light);
+      letter-spacing: .25em;
+      text-transform: uppercase;
+      font-style: italic;
+      opacity: 0;
+      animation: loaderFade 1s ease 1s forwards;
+    }
+
+    @keyframes loaderFade {
+      to {
+        opacity: 1;
+      }
+    }
+
+    @keyframes loaderBar {
+      to {
+        left: 0;
+      }
+    }
+
+    /* ── SCROLL PROGRESS ── */
+    #progress-bar {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 0%;
+      height: 2px;
+      background: linear-gradient(90deg, var(--bark), var(--gold), var(--gold-light));
+      z-index: 9000;
+      transition: width .05s linear;
+      box-shadow: 0 0 10px var(--gold);
+    }
+
+    /* ── NAVBAR ── */
+    #navbar {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      z-index: 8000;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 1.5rem 4rem;
+      transition: all .5s ease;
+    }
+
+    #navbar.scrolled {
+      background: rgba(10, 8, 4, .92);
+      backdrop-filter: blur(20px);
+      padding: 1rem 4rem;
+      border-bottom: 1px solid rgba(196, 147, 58, .15);
+    }
+
+    .nav-logo {
+      display: flex;
+      flex-direction: column;
+      gap: .2rem;
+      text-decoration: none;
+    }
+
+    .nav-logo-main {
+      font-family: var(--serif-display);
+      font-size: .9rem;
+      letter-spacing: .3em;
+      color: var(--gold);
+      text-transform: uppercase;
+    }
+
+    .nav-logo-sub {
+      font-family: var(--serif-body);
+      font-size: .7rem;
+      letter-spacing: .2em;
+      color: var(--text-light);
+      text-transform: uppercase;
+      font-style: italic;
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 2.5rem;
+      list-style: none;
+    }
+
+    .nav-links a {
+      font-family: var(--serif-display);
+      font-size: .65rem;
+      letter-spacing: .2em;
+      text-transform: uppercase;
+      color: var(--text-light);
+      text-decoration: none;
+      transition: color .3s;
+      position: relative;
+    }
+
+    .nav-links a::after {
+      content: '';
+      position: absolute;
+      bottom: -4px;
+      left: 0;
+      width: 0;
+      height: 1px;
+      background: var(--gold);
+      transition: width .3s;
+    }
+
+    .nav-links a:hover {
+      color: var(--gold);
+    }
+
+    .nav-links a:hover::after {
+      width: 100%;
+    }
+
+    .nav-cta {
+      font-family: var(--serif-display);
+      font-size: .65rem;
+      letter-spacing: .2em;
+      text-transform: uppercase;
+      color: var(--ink);
+      background: var(--gold);
+      padding: .7rem 1.8rem;
+      text-decoration: none;
+      transition: all .3s;
+    }
+
+    .nav-cta:hover {
+      background: var(--gold-light);
+    }
+
+    /* ── HERO ── */
+    #hero {
+      height: 100vh;
+      min-height: 700px;
+      position: relative;
+      overflow: hidden;
+      display: flex;
+      align-items: flex-end;
+    }
+
+    .hero-bg {
+      position: absolute;
+      inset: 0;
+      background-image: url('image/pexels-digitalbuggu-204976.jpg');
+      background-size: cover;
+      background-position: center 30%;
+      transform: scale(1.1);
+      will-change: transform;
+      backface-visibility: hidden;
+    }
+
+    .hero-overlay {
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(180deg,
+          rgba(10, 8, 4, .1) 0%,
+          rgba(10, 8, 4, .2) 30%,
+          rgba(10, 8, 4, .65) 70%,
+          rgba(10, 8, 4, .97) 100%);
+    }
+
+    .hero-ornament-top {
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 200px;
+      background: linear-gradient(180deg, rgba(10, 8, 4, .8) 0%, transparent 100%);
+    }
+
+    .hero-content {
+      position: relative;
+      z-index: 2;
+      padding: 0 4rem 8rem;
+      max-width: 900px;
+    }
+
+    .hero-est {
+      font-family: var(--serif-display);
+      font-size: .65rem;
+      letter-spacing: .5em;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-bottom: 1.5rem;
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+    }
+
+    .hero-est::before,
+    .hero-est::after {
+      content: '';
+      width: 40px;
+      height: 1px;
+      background: var(--gold);
+      opacity: .6;
+    }
+
+    .hero-title {
+      font-family: var(--serif-head);
+      font-size: clamp(3rem, 8vw, 7rem);
+      font-weight: 400;
+      line-height: 1.05;
+      color: var(--white);
+      margin-bottom: 1rem;
+      overflow: hidden;
+    }
+
+    .hero-title span {
+      display: block;
+      font-style: italic;
+      color: var(--gold-light);
+    }
+
+    .hero-tagline {
+      font-family: var(--serif-body);
+      font-size: clamp(1rem, 2vw, 1.35rem);
+      color: var(--text-light);
+      font-style: italic;
+      max-width: 500px;
+      margin-bottom: 3rem;
+      letter-spacing: .02em;
+    }
+
+    .hero-actions {
+      display: flex;
+      gap: 1.5rem;
+      align-items: center;
+    }
+
+    .btn-primary {
+      font-family: var(--serif-display);
+      font-size: .65rem;
+      letter-spacing: .25em;
+      text-transform: uppercase;
+      color: var(--ink);
+      background: var(--gold);
+      padding: 1rem 2.5rem;
+      text-decoration: none;
+      border: none;
+      cursor: pointer;
+      transition: all .3s;
+      display: inline-block;
+    }
+
+    .btn-primary:hover {
+      background: var(--gold-light);
+      transform: translateY(-2px);
+    }
+
+    .btn-outline {
+      font-family: var(--serif-display);
+      font-size: .65rem;
+      letter-spacing: .25em;
+      text-transform: uppercase;
+      color: var(--gold);
+      background: transparent;
+      padding: 1rem 2.5rem;
+      text-decoration: none;
+      border: 1px solid rgba(196, 147, 58, .5);
+      cursor: pointer;
+      transition: all .3s;
+      display: inline-block;
+    }
+
+    .btn-outline:hover {
+      border-color: var(--gold);
+      color: var(--white);
+    }
+
+    .hero-scroll {
+      position: absolute;
+      bottom: 3rem;
+      right: 4rem;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: .8rem;
+      z-index: 2;
+    }
+
+    .scroll-line {
+      width: 1px;
+      height: 80px;
+      background: linear-gradient(180deg, transparent, var(--gold), transparent);
+      animation: scrollPulse 2s ease infinite;
+    }
+
+    .scroll-text {
+      font-family: var(--serif-display);
+      font-size: .55rem;
+      letter-spacing: .3em;
+      text-transform: uppercase;
+      color: var(--text-light);
+      writing-mode: vertical-lr;
+      transform: rotate(180deg);
+    }
+
+    @keyframes scrollPulse {
+
+      0%,
+      100% {
+        opacity: .3;
+        transform: scaleY(1);
+      }
+
+      50% {
+        opacity: 1;
+        transform: scaleY(1.2);
+      }
+    }
+
+    /* ── SECTION BASE ── */
+    section {
+      position: relative;
+      overflow: hidden;
+    }
+
+    .section-inner {
+      max-width: 1400px;
+      margin: 0 auto;
+      padding: 0 4rem;
+    }
+
+    .section-label {
+      font-family: var(--serif-display);
+      font-size: .6rem;
+      letter-spacing: .5em;
+      text-transform: uppercase;
+      color: var(--gold);
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      margin-bottom: 1.5rem;
+    }
+
+    .section-label::before {
+      content: '';
+      width: 30px;
+      height: 1px;
+      background: var(--gold);
+    }
+
+    .section-title {
+      font-family: var(--serif-head);
+      font-size: clamp(2.2rem, 5vw, 4rem);
+      font-weight: 400;
+      line-height: 1.15;
+      color: var(--white);
+    }
+
+    .section-title em {
+      font-style: italic;
+      color: var(--gold-light);
+    }
+
+    .divider {
+      width: 80px;
+      height: 1px;
+      background: linear-gradient(90deg, var(--gold), transparent);
+      margin: 1.5rem 0;
+    }
+
+    /* ── MARQUEE BAND ── */
+    .marquee-band {
+      background: var(--gold);
+      overflow: hidden;
+      white-space: nowrap;
+      padding: .8rem 0;
+    }
+
+    .marquee-inner {
+      display: inline-flex;
+      animation: marquee 30s linear infinite;
+    }
+
+    .marquee-item {
+      font-family: var(--serif-display);
+      font-size: .6rem;
+      letter-spacing: .3em;
+      text-transform: uppercase;
+      color: var(--ink);
+      padding: 0 3rem;
+    }
+
+    .marquee-dot {
+      opacity: .5;
+    }
+
+    @keyframes marquee {
+      from {
+        transform: translateX(0);
+      }
+
+      to {
+        transform: translateX(-50%);
+      }
+    }
+
+    /* ── STORY SECTION ── */
+    #story {
+      padding: 10rem 0;
+      background: var(--ink);
+    }
+
+    .story-layout {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 8rem;
+      align-items: center;
+    }
+
+    .story-image-wrap {
+      position: relative;
+    }
+
+    .story-image-main {
+      width: 100%;
+      aspect-ratio: 4/5;
+      object-fit: cover;
+      display: block;
+    }
+
+    .story-year-badge {
+      position: absolute;
+      bottom: -2rem;
+      right: -2rem;
+      width: 120px;
+      height: 120px;
+      background: var(--gold);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: .2rem;
+    }
+
+    .story-year-num {
+      font-family: var(--serif-display);
+      font-size: 2rem;
+      font-weight: 700;
+      color: var(--ink);
+      line-height: 1;
+    }
+
+    .story-year-label {
+      font-family: var(--serif-display);
+      font-size: .45rem;
+      letter-spacing: .3em;
+      text-transform: uppercase;
+      color: var(--ink);
+    }
+
+    .story-frame {
+      position: absolute;
+      top: -1.5rem;
+      left: -1.5rem;
+      right: 1.5rem;
+      bottom: 1.5rem;
+      border: 1px solid rgba(196, 147, 58, .3);
+      pointer-events: none;
+    }
+
+    .story-text p {
+      color: var(--text-light);
+      font-size: 1.1rem;
+      margin-bottom: 1.5rem;
+      line-height: 1.85;
+    }
+
+    .story-stats {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 2rem;
+      margin-top: 3rem;
+      padding-top: 3rem;
+      border-top: 1px solid rgba(196, 147, 58, .2);
+    }
+
+    .stat-item {
+      display: flex;
+      flex-direction: column;
+      gap: .3rem;
+    }
+
+    .stat-num {
+      font-family: var(--serif-display);
+      font-size: 2.5rem;
+      font-weight: 600;
+      color: var(--gold);
+      line-height: 1;
+    }
+
+    .stat-label {
+      font-family: var(--serif-display);
+      font-size: .55rem;
+      letter-spacing: .25em;
+      text-transform: uppercase;
+      color: var(--text-dim);
+    }
+
+    /* ── HERITAGE TIMELINE ── */
+    #timeline {
+      padding: 10rem 0;
+      background: linear-gradient(180deg, var(--ink) 0%, #120e09 100%);
+    }
+
+    .timeline-wrap {
+      position: relative;
+      padding-top: 4rem;
+    }
+
+    .timeline-line {
+      position: absolute;
+      top: 0;
+      bottom: 0;
+      left: 50%;
+      width: 1px;
+      background: linear-gradient(180deg, transparent, var(--gold), var(--gold), transparent);
+      transform: translateX(-50%);
+    }
+
+    .timeline-items {
+      display: flex;
+      flex-direction: column;
+      gap: 5rem;
+    }
+
+    .timeline-item {
+      display: grid;
+      grid-template-columns: 1fr auto 1fr;
+      gap: 3rem;
+      align-items: center;
+    }
+
+    .timeline-item:nth-child(even) .t-content {
+      grid-column: 3;
+      grid-row: 1;
+    }
+
+    .timeline-item:nth-child(even) .t-empty {
+      grid-column: 1;
+      grid-row: 1;
+    }
+
+    .t-content {
+      background: rgba(196, 147, 58, .05);
+      border: 1px solid rgba(196, 147, 58, .15);
+      padding: 2.5rem;
+    }
+
+    .t-year {
+      font-family: var(--serif-display);
+      font-size: .65rem;
+      letter-spacing: .4em;
+      color: var(--gold);
+      text-transform: uppercase;
+      margin-bottom: .8rem;
+    }
+
+    .t-title {
+      font-family: var(--serif-head);
+      font-size: 1.5rem;
+      color: var(--white);
+      margin-bottom: 1rem;
+    }
+
+    .t-desc {
+      font-family: var(--serif-body);
+      font-size: 1rem;
+      color: var(--text-light);
+      line-height: 1.75;
+    }
+
+    .t-dot {
+      width: 14px;
+      height: 14px;
+      border-radius: 50%;
+      background: var(--gold);
+      border: 3px solid var(--ink);
+      box-shadow: 0 0 0 1px var(--gold);
+      flex-shrink: 0;
+    }
+
+   
+
+    /* ── FEATURE STRIP ── */
+    .features-strip {
+      background: rgba(196, 147, 58, .07);
+      border-top: 1px solid rgba(196, 147, 58, .15);
+      border-bottom: 1px solid rgba(196, 147, 58, .15);
+      padding: 4rem 0;
+    }
+
+    .features-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 0;
+    }
+
+    .feature-item {
+      padding: 2rem 3rem;
+      border-right: 1px solid rgba(196, 147, 58, .15);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+      gap: 1rem;
+    }
+
+    .feature-item:last-child {
+      border-right: none;
+    }
+
+    .feature-icon {
+      font-size: 2rem;
+      color: var(--gold);
+      line-height: 1;
+    }
+
+    .feature-name {
+      font-family: var(--serif-display);
+      font-size: .6rem;
+      letter-spacing: .2em;
+      text-transform: uppercase;
+      color: var(--white);
+    }
+
+    .feature-desc {
+      font-family: var(--serif-body);
+      font-size: .9rem;
+      color: var(--text-dim);
+      font-style: italic;
+    }
+
+    /* ── ROOMS ── */
+    #rooms {
+      padding: 10rem 0;
+      background: var(--ink);
+    }
+
+    .rooms-header {
+      display: grid;
+      grid-template-columns: 1fr auto;
+      align-items: flex-end;
+      margin-bottom: 5rem;
+    }
+
+    .rooms-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 2px;
+    }
+
+    .room-card {
+      position: relative;
+      overflow: hidden;
+      aspect-ratio: 4/3;
+      cursor: pointer;
+    }
+
+    .room-card:first-child {
+      grid-column: 1;
+      grid-row: 1 / 3;
+      aspect-ratio: auto;
+    }
+
+    .room-img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform .8s ease;
+      display: block;
+    }
+
+    .room-card:hover .room-img {
+      transform: scale(1.06);
+    }
+
+    .room-overlay {
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(0deg, rgba(10, 8, 4, .9) 0%, rgba(10, 8, 4, .1) 50%, transparent 100%);
+      transition: background .5s;
+    }
+
+    .room-card:hover .room-overlay {
+      background: linear-gradient(0deg, rgba(10, 8, 4, .95) 0%, rgba(10, 8, 4, .4) 60%, rgba(10, 8, 4, .1) 100%);
+    }
+
+    .room-info {
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      padding: 2.5rem;
+    }
+
+    .room-type {
+      font-family: var(--serif-display);
+      font-size: .55rem;
+      letter-spacing: .35em;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-bottom: .5rem;
+    }
+
+    .room-name {
+      font-family: var(--serif-head);
+      font-size: clamp(1.5rem, 3vw, 2rem);
+      color: var(--white);
+      margin-bottom: .5rem;
+    }
+
+    .room-price {
+      font-family: var(--serif-body);
+      font-size: 1rem;
+      color: var(--text-light);
+      font-style: italic;
+    }
+
+    .room-desc {
+      font-family: var(--serif-body);
+      font-size: .9rem;
+      color: var(--text-light);
+      line-height: 1.6;
+      margin-top: .8rem;
+      max-height: 0;
+      overflow: hidden;
+      transition: max-height .5s ease;
+    }
+
+    .room-card:hover .room-desc {
+      max-height: 80px;
+    }
+
+    .room-btn {
+      display: inline-block;
+      margin-top: 1rem;
+      font-family: var(--serif-display);
+      font-size: .55rem;
+      letter-spacing: .25em;
+      text-transform: uppercase;
+      color: var(--gold);
+      text-decoration: none;
+      border-bottom: 1px solid rgba(196, 147, 58, .4);
+      padding-bottom: .2rem;
+      opacity: 0;
+      transition: opacity .4s .1s;
+    }
+
+    .room-card:hover .room-btn {
+      opacity: 1;
+    }
+
+    /* ── PARALLAX QUOTE ── */
+    .parallax-quote {
+      height: 70vh;
+      position: relative;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      overflow: hidden;
+    }
+
+    .parallax-bg {
+      position: absolute;
+      inset: -20%;
+      background-image: url('image/SEANRY.jpeg');
+      background-size: cover;
+      background-position: center;
+      will-change: transform;
+    }
+
+    .parallax-overlay {
+      position: absolute;
+      inset: 0;
+      background: rgba(10, 8, 4, .75);
+    }
+
+    .quote-content {
+      position: relative;
+      z-index: 1;
+      text-align: center;
+      max-width: 800px;
+      padding: 0 4rem;
+    }
+
+    .quote-mark {
+      font-family: var(--serif-head);
+      font-size: 8rem;
+      color: var(--gold);
+      opacity: .3;
+      line-height: .6;
+      margin-bottom: 1rem;
+    }
+
+    .quote-text {
+      font-family: var(--serif-head);
+      font-size: clamp(1.5rem, 3.5vw, 2.5rem);
+      font-style: italic;
+      font-weight: 400;
+      color: var(--white);
+      line-height: 1.4;
+      margin-bottom: 2rem;
+    }
+
+    .quote-source {
+      font-family: var(--serif-display);
+      font-size: .6rem;
+      letter-spacing: .35em;
+      text-transform: uppercase;
+      color: var(--gold);
+    }
+
+    /* ── EXPERIENCE ── */
+    #experience {
+      padding: 10rem 0;
+      background: #0e0b07;
+    }
+
+    .exp-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1px;
+      background: rgba(196, 147, 58, .1);
+      margin-top: 5rem;
+    }
+
+    .exp-card {
+      background: var(--ink);
+      padding: 4rem;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .exp-card::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 3px;
+      height: 0;
+      background: var(--gold);
+      transition: height .5s ease;
+    }
+
+    .exp-card:hover::before {
+      height: 100%;
+    }
+
+    .exp-icon {
+      font-size: 2.5rem;
+      margin-bottom: 1.5rem;
+      color: var(--gold);
+    }
+
+    .exp-title {
+      font-family: var(--serif-head);
+      font-size: 1.8rem;
+      color: var(--white);
+      margin-bottom: 1rem;
+      font-weight: 400;
+    }
+
+    .exp-desc {
+      font-family: var(--serif-body);
+      font-size: 1rem;
+      color: var(--text-light);
+      line-height: 1.8;
+    }
+
+    .exp-num {
+      position: absolute;
+      top: 3rem;
+      right: 4rem;
+      font-family: var(--serif-display);
+      font-size: 5rem;
+      font-weight: 700;
+      color: rgba(196, 147, 58, .06);
+      line-height: 1;
+    }
+
+    /* ── GALLERY ── */
+    #gallery {
+      padding: 10rem 0 0;
+      background: var(--ink);
+    }
+
+    .gallery-masonry {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      grid-template-rows: auto;
+      gap: 3px;
+      margin-top: 5rem;
+    }
+
+    .gallery-cell {
+      overflow: hidden;
+      position: relative;
+      cursor: zoom-in;
+    }
+
+    .gallery-cell:nth-child(1) {
+      grid-column: 1;
+      grid-row: 1 / 3;
+    }
+
+    .gallery-cell:nth-child(4) {
+      grid-column: 3;
+      grid-row: 2 / 4;
+    }
+
+    .gallery-cell img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+      transition: transform 1s ease;
+      min-height: 280px;
+    }
+
+    .gallery-cell:hover img {
+      transform: scale(1.07);
+    }
+
+    .gallery-cell-overlay {
+      position: absolute;
+      inset: 0;
+      background: rgba(10, 8, 4, 0);
+      transition: background .4s;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .gallery-cell:hover .gallery-cell-overlay {
+      background: rgba(10, 8, 4, .3);
+    }
+
+    .gallery-zoom-icon {
+      color: var(--gold);
+      font-size: 2rem;
+      opacity: 0;
+      transform: scale(.8);
+      transition: all .3s;
+    }
+
+    .gallery-cell:hover .gallery-zoom-icon {
+      opacity: 1;
+      transform: scale(1);
+    }
+
+    /* LIGHTBOX */
+    #lightbox {
+      position: fixed;
+      inset: 0;
+      background: rgba(10, 8, 4, .97);
+      z-index: 99000;
+      display: none;
+      align-items: center;
+      justify-content: center;
+      backdrop-filter: blur(10px);
+    }
+
+    #lightbox.active {
+      display: flex;
+    }
+
+    #lightbox-img {
+      max-width: 90vw;
+      max-height: 90vh;
+      object-fit: contain;
+    }
+
+    #lightbox-close {
+      position: absolute;
+      top: 2rem;
+      right: 2rem;
+      font-size: 1.5rem;
+      color: var(--gold);
+      cursor: pointer;
+      background: none;
+      border: 1px solid rgba(196, 147, 58, .4);
+      width: 50px;
+      height: 50px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    /* ── TESTIMONIALS ── */
+    #testimonials {
+      padding: 10rem 0;
+      background: linear-gradient(180deg, var(--ink) 0%, #0c0907 100%);
+    }
+
+    .testimonials-wrap {
+      position: relative;
+    }
+
+    .testimonial-slider {
+      overflow: hidden;
+    }
+
+    .testimonial-track {
+      display: flex;
+      transition: transform .6s cubic-bezier(.77, 0, .175, 1);
+    }
+
+    .testimonial-slide {
+      min-width: 100%;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 6rem;
+      align-items: center;
+    }
+
+    .testimonial-quote {
+      font-family: var(--serif-head);
+      font-size: clamp(1.2rem, 2.5vw, 1.8rem);
+      font-style: italic;
+      color: var(--white);
+      line-height: 1.6;
+    }
+
+    .testimonial-quote::before {
+      content: '"';
+      display: block;
+      font-family: var(--serif-head);
+      font-size: 5rem;
+      color: var(--gold);
+      opacity: .4;
+      line-height: .8;
+      margin-bottom: 1rem;
+    }
+
+    .testimonial-meta {
+      display: flex;
+      flex-direction: column;
+      gap: .5rem;
+      margin-top: 2rem;
+    }
+
+    .testimonial-name {
+      font-family: var(--serif-display);
+      font-size: .7rem;
+      letter-spacing: .3em;
+      text-transform: uppercase;
+      color: var(--gold);
+    }
+
+    .testimonial-title {
+      font-family: var(--serif-body);
+      font-size: .9rem;
+      color: var(--text-dim);
+      font-style: italic;
+    }
+
+    .testimonial-visual {
+      display: flex;
+      flex-direction: column;
+      gap: 1.5rem;
+    }
+
+    .t-rating {
+      display: flex;
+      gap: .3rem;
+      color: var(--gold);
+      font-size: 1rem;
+    }
+
+    .testimonial-controls {
+      display: flex;
+      gap: 1rem;
+      margin-top: 4rem;
+    }
+
+    .t-btn {
+      width: 50px;
+      height: 50px;
+      border: 1px solid rgba(196, 147, 58, .3);
+      background: transparent;
+      color: var(--gold);
+      font-size: 1.2rem;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: all .3s;
+    }
+
+    .t-btn:hover {
+      background: var(--gold);
+      color: var(--ink);
+    }
+
+    /* ── BOOKING ── */
+    #booking {
+      padding: 10rem 0;
+      background: var(--ink);
+      position: relative;
+    }
+
+    .booking-bg-text {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      font-family: var(--serif-display);
+      font-size: clamp(8rem, 20vw, 18rem);
+      font-weight: 700;
+      color: rgba(196, 147, 58, .03);
+      white-space: nowrap;
+      pointer-events: none;
+      line-height: 1;
+      letter-spacing: .1em;
+    }
+
+    .booking-layout {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 8rem;
+      align-items: flex-start;
+    }
+
+    .booking-form {
+      display: flex;
+      flex-direction: column;
+      gap: 1.5rem;
+    }
+
+    .form-group {
+      display: flex;
+      flex-direction: column;
+      gap: .5rem;
+    }
+
+    .form-label {
+      font-family: var(--serif-display);
+      font-size: .55rem;
+      letter-spacing: .3em;
+      text-transform: uppercase;
+      color: var(--gold);
+    }
+
+    .form-input,
+    .form-select,
+    .form-textarea {
+      background: rgba(196, 147, 58, .05);
+      border: 1px solid rgba(196, 147, 58, .2);
+      color: var(--white);
+      padding: 1rem 1.2rem;
+      font-family: var(--serif-body);
+      font-size: 1rem;
+      outline: none;
+      transition: border-color .3s;
+      width: 100%;
+    }
+
+    .form-input:focus,
+    .form-select:focus,
+    .form-textarea:focus {
+      border-color: var(--gold);
+    }
+
+    .form-select option {
+      background: var(--ink);
+    }
+
+    .form-row {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1rem;
+    }
+
+    .form-textarea {
+      min-height: 120px;
+      resize: vertical;
+    }
+
+    .booking-contact {
+      display: flex;
+      flex-direction: column;
+      gap: 2rem;
+    }
+
+    .contact-item {
+      display: flex;
+      gap: 1.5rem;
+      align-items: flex-start;
+      padding: 2rem;
+      border: 1px solid rgba(196, 147, 58, .12);
+    }
+
+    .contact-icon {
+      font-size: 1.5rem;
+      color: var(--gold);
+      flex-shrink: 0;
+      margin-top: .2rem;
+    }
+
+    .contact-label {
+      font-family: var(--serif-display);
+      font-size: .55rem;
+      letter-spacing: .3em;
+      text-transform: uppercase;
+      color: var(--text-dim);
+      margin-bottom: .4rem;
+    }
+
+    .contact-value {
+      font-family: var(--serif-body);
+      font-size: 1.05rem;
+      color: var(--white);
+    }
+
+    .contact-value a {
+      color: var(--white);
+      text-decoration: none;
+      transition: color .3s;
+    }
+
+    .contact-value a:hover {
+      color: var(--gold);
+    }
+
+    .whatsapp-btn {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      background: #1a3a1a;
+      border: 1px solid #2d5a2d;
+      color: #4caf50;
+      padding: 1.2rem 2rem;
+      text-decoration: none;
+      font-family: var(--serif-display);
+      font-size: .6rem;
+      letter-spacing: .2em;
+      text-transform: uppercase;
+      transition: all .3s;
+    }
+
+    .whatsapp-btn:hover {
+      background: #2d5a2d;
+      color: #81c784;
+    }
+
+    /* ── MAP SECTION ── */
+    #location {
+      height: 500px;
+      position: relative;
+    }
+
+    #location iframe {
+      width: 100%;
+      height: 100%;
+      border: none;
+      filter: grayscale(60%) sepia(20%);
+    }
+
+    .location-overlay-text {
+      position: absolute;
+      top: 50%;
+      left: 4rem;
+      transform: translateY(-50%);
+      background: rgba(10, 8, 4, .9);
+      border: 1px solid rgba(196, 147, 58, .2);
+      padding: 2.5rem;
+      max-width: 360px;
+      backdrop-filter: blur(10px);
+    }
+
+    /* ── FOOTER ── */
+    footer {
+      background: var(--ink-deep);
+      border-top: 1px solid rgba(196, 147, 58, .15);
+      padding: 6rem 0 3rem;
+    }
+
+    .footer-inner {
+      max-width: 1400px;
+      margin: 0 auto;
+      padding: 0 4rem;
+    }
+
+    .footer-top {
+      display: grid;
+      grid-template-columns: 1.5fr 1fr 1fr 1fr;
+      gap: 4rem;
+      margin-bottom: 4rem;
+      padding-bottom: 4rem;
+      border-bottom: 1px solid rgba(196, 147, 58, .1);
+    }
+
+    .footer-brand p {
+      font-family: var(--serif-body);
+      font-size: .95rem;
+      color: var(--text-dim);
+      line-height: 1.75;
+      margin-top: 1rem;
+    }
+
+    .footer-logo {
+      font-family: var(--serif-display);
+      font-size: 1.2rem;
+      letter-spacing: .2em;
+      color: var(--gold);
+      text-transform: uppercase;
+      text-decoration: none;
+    }
+
+    .footer-heading {
+      font-family: var(--serif-display);
+      font-size: .6rem;
+      letter-spacing: .35em;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-bottom: 1.5rem;
+    }
+
+    .footer-links {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: .8rem;
+    }
+
+    .footer-links a {
+      font-family: var(--serif-body);
+      font-size: 1rem;
+      color: var(--text-dim);
+      text-decoration: none;
+      transition: color .3s;
+      font-style: italic;
+    }
+
+    .footer-links a:hover {
+      color: var(--gold);
+    }
+
+    .footer-contact-item {
+      display: flex;
+      gap: .8rem;
+      align-items: flex-start;
+      margin-bottom: 1rem;
+    }
+
+    .footer-contact-icon {
+      color: var(--gold);
+      font-size: .9rem;
+      margin-top: .2rem;
+    }
+
+    .footer-contact-text {
+      font-family: var(--serif-body);
+      font-size: .95rem;
+      color: var(--text-dim);
+      line-height: 1.5;
+    }
+
+    .footer-contact-text a {
+      color: var(--text-dim);
+      text-decoration: none;
+    }
+
+    .footer-bottom {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .footer-copy {
+      font-family: var(--serif-display);
+      font-size: .55rem;
+      letter-spacing: .2em;
+      text-transform: uppercase;
+      color: var(--text-dim);
+    }
+
+    .social-links {
+      display: flex;
+      gap: 1rem;
+    }
+
+    .social-link {
+      width: 40px;
+      height: 40px;
+      border: 1px solid rgba(196, 147, 58, .2);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--text-dim);
+      font-size: .9rem;
+      text-decoration: none;
+      transition: all .3s;
+    }
+
+    .social-link:hover {
+      border-color: var(--gold);
+      color: var(--gold);
+    }
+
+    .footer-crest {
+      text-align: center;
+      margin-bottom: 3rem;
+    }
+
+    .footer-crest-title {
+      font-family: var(--serif-display);
+      font-size: 2.5rem;
+      font-weight: 600;
+      color: var(--gold);
+      letter-spacing: .15em;
+      opacity: .15;
+    }
+
+    /* ── ABOUT PAGE OVERLAY ── */
+    #page-about,
+    #page-rooms,
+    #page-experience,
+    #page-gallery-full {
+      display: none;
+      position: fixed;
+      inset: 0;
+      z-index: 10000;
+      background: var(--ink);
+      overflow-y: auto;
+      padding: 6rem 0;
+    }
+
+    #page-about.open,
+    #page-rooms.open,
+    #page-experience.open,
+    #page-gallery-full.open {
+      display: block;
+      animation: pageIn .5s ease;
+    }
+
+    @keyframes pageIn {
+      from {
+        opacity: 0;
+        transform: translateY(20px);
+      }
+
+      to {
+        opacity: 1;
+        transform: none;
+      }
+    }
+
+    .page-close {
+      position: fixed;
+      top: 2rem;
+      right: 2rem;
+      z-index: 10001;
+      background: transparent;
+      border: 1px solid rgba(196, 147, 58, .3);
+      color: var(--gold);
+      width: 50px;
+      height: 50px;
+      font-size: 1.2rem;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: all .3s;
+    }
+
+    .page-close:hover {
+      background: var(--gold);
+      color: var(--ink);
+    }
+
+    .page-content {
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 0 4rem;
+    }
+
+    /* ── ANIMATIONS ── */
+    .reveal {
+      opacity: 0;
+      transform: translateY(40px);
+    }
+
+    .reveal-left {
+      opacity: 0;
+      transform: translateX(-40px);
+    }
+
+    .reveal-right {
+      opacity: 0;
+      transform: translateX(40px);
+    }
+
+    .reveal-scale {
+      opacity: 0;
+      transform: scale(.96);
+    }
+
+    /* ── MOBILE NAV TOGGLE ── */
+    .nav-toggle {
+      display: none;
+      flex-direction: column;
+      gap: 5px;
+      cursor: pointer;
+      padding: .5rem;
+      background: none;
+      border: none;
+      z-index: 8001;
+    }
+
+    .nav-toggle span {
+      width: 24px;
+      height: 1px;
+      background: var(--gold);
+      transition: all .35s cubic-bezier(.77,0,.175,1);
+      display: block;
+      transform-origin: center;
+    }
+
+    .nav-toggle.open span:nth-child(1) { transform: translateY(6px) rotate(45deg); }
+    .nav-toggle.open span:nth-child(2) { opacity: 0; transform: scaleX(0); }
+    .nav-toggle.open span:nth-child(3) { transform: translateY(-6px) rotate(-45deg); }
+
+    /* ── MOBILE MENU ── */
+    .mobile-menu {
+      display: none;
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: rgba(10,8,4,.98);
+      backdrop-filter: blur(20px);
+      z-index: 7990;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 2.5rem;
+      opacity: 0;
+      transform: translateY(-20px);
+      transition: opacity .4s ease, transform .4s ease;
+    }
+
+    .mobile-menu.open {
+      display: flex;
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    .mobile-menu a {
+      font-family: var(--serif-display);
+      font-size: 1.1rem;
+      letter-spacing: .3em;
+      text-transform: uppercase;
+      color: var(--text-light);
+      text-decoration: none;
+      transition: color .3s;
+    }
+
+    .mobile-menu a:hover { color: var(--gold); }
+
+    .mobile-menu .nav-cta-mobile {
+      margin-top: 1rem;
+      color: var(--ink) !important;
+      background: var(--gold);
+      padding: 1rem 2.5rem;
+    }
+
+    /* ── RESPONSIVE ── */
+    @media (max-width: 1200px) {
+      .booking-layout { gap: 5rem; }
+      .story-layout { gap: 5rem; }
+    }
+
+    @media (max-width: 1024px) {
+      .story-layout {
+        grid-template-columns: 1fr;
+        gap: 4rem;
+      }
+
+      .booking-layout {
+        grid-template-columns: 1fr;
+        gap: 4rem;
+      }
+
+      .footer-top {
+        grid-template-columns: 1fr 1fr;
+        gap: 3rem;
+      }
+
+      .rooms-grid {
+        grid-template-columns: 1fr 1fr;
+      }
+
+      .room-card:first-child {
+        grid-column: auto;
+        grid-row: auto;
+      }
+
+      .timeline-item {
+        grid-template-columns: 1fr;
+      }
+
+      .timeline-line {
+        display: none;
+      }
+
+      .t-empty { display: none; }
+      .t-dot { display: none; }
+
+      .testimonial-slide {
+        grid-template-columns: 1fr;
+        gap: 2rem;
+      }
+
+      .features-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+    }
+
+    @media (max-width: 768px) {
+      #navbar {
+        padding: 1rem 1.5rem;
+      }
+
+      .nav-links { display: none; }
+      .nav-cta { display: none; }
+      .nav-toggle { display: flex; }
+
+      .hero-content {
+        padding: 0 1.5rem 6rem;
+      }
+
+      .section-inner {
+        padding: 0 1.5rem;
+      }
+
+      #story { padding: 6rem 0; }
+      #timeline { padding: 6rem 0; }
+      #rooms { padding: 6rem 0; }
+      #experience { padding: 6rem 0; }
+      #gallery { padding: 6rem 0; }
+      #testimonials { padding: 6rem 0; }
+      #booking { padding: 6rem 0; }
+
+      .hero-scroll { display: none; }
+
+      .footer-top {
+        grid-template-columns: 1fr;
+      }
+
+      .footer-inner { padding: 0 1.5rem; }
+
+      .features-grid {
+        grid-template-columns: 1fr 1fr;
+      }
+
+      .exp-grid { grid-template-columns: 1fr; }
+
+      .gallery-masonry {
+        grid-template-columns: 1fr 1fr;
+      }
+
+      .gallery-cell:nth-child(1),
+      .gallery-cell:nth-child(4) {
+        grid-column: auto;
+        grid-row: auto;
+      }
+
+      .booking-layout { grid-template-columns: 1fr; }
+
+      .form-row {
+        grid-template-columns: 1fr;
+        gap: 0;
+      }
+
+      .location-overlay-text { display: none; }
+
+      .footer-bottom {
+        flex-direction: column;
+        gap: 1rem;
+        text-align: center;
+      }
+
+      .rooms-grid { grid-template-columns: 1fr; }
+
+      .story-year-badge {
+        bottom: -1rem;
+        right: -1rem;
+        width: 90px;
+        height: 90px;
+      }
+
+      .testimonial-slide {
+        grid-template-columns: 1fr;
+      }
+
+      .testimonial-visual { display: none; }
+
+      .page-content { padding: 0 1.5rem; }
+    }
+
+    @media (max-width: 480px) {
+      .hero-title {
+        font-size: clamp(2.5rem, 11vw, 4rem);
+      }
+
+      .section-title {
+        font-size: clamp(1.8rem, 7vw, 3rem);
+      }
+
+      .features-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .booking-layout { gap: 3rem; }
+
+      .contact-item { padding: 1.2rem; }
+
+      #loader .loader-year {
+        font-size: clamp(3.5rem, 18vw, 7rem);
+      }
+    }
+
+    /* ── REDUCED MOTION ── */
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+      }
+      .marquee-inner { animation: none; }
+    }
+
+    /* ── TOUCH IMPROVEMENTS ── */
+    a, button, .room-card, .gallery-cell, .t-btn {
+      touch-action: manipulation;
+      -webkit-tap-highlight-color: transparent;
+    }
+
+    /* ── SCROLLBAR ── */
+    ::-webkit-scrollbar { width: 4px; }
+    ::-webkit-scrollbar-track { background: var(--ink); }
+    ::-webkit-scrollbar-thumb { background: var(--gold); border-radius: 2px; }
+
+    /* ── IMAGE OPTIMIZATION ── */
+    img {
+      image-rendering: auto;
+    }
+
+    /* ── FORM PHONE FLAG ── */
+    .phone-wrapper {
+      display: flex;
+      gap: 0;
+      align-items: stretch;
+    }
+
+    .phone-flag {
+      display: flex;
+      align-items: center;
+      padding: 0 1rem;
+      background: rgba(196,147,58,.08);
+      border: 1px solid rgba(196,147,58,.2);
+      border-right: none;
+      font-family: var(--serif-body);
+      color: var(--text-light);
+      font-size: .95rem;
+      white-space: nowrap;
+      flex-shrink: 0;
+    }
+
+    .phone-wrapper .form-input {
+      border-left: none;
+    }
+
+    .phone-wrapper .form-input:focus {
+      border-left: none;
+    }
+  </style>
+</head>
+
+<body>
+
+  <!-- Custom cursor -->
+  <div id="cursor"></div>
+  <div id="cursor-ring"></div>
+
+  <!-- Loader -->
+  <div id="loader">
+    <div class="loader-crest">Heritage Aira Holme</div>
+    <div class="loader-line"></div>
+    <div class="loader-year">1870</div>
+    <div class="loader-subtitle">A Colonial Estate — Shimla, India</div>
+  </div>
+
+  <!-- Scroll Progress -->
+  <div id="progress-bar"></div>
+
+  <!-- Lightbox -->
+  <div id="lightbox">
+    <button id="lightbox-close">✕</button>
+    <img id="lightbox-img" src="" alt="">
+  </div>
+
+  <!-- ═══════════════════════════════════════════
+     NAVBAR
+════════════════════════════════════════════ -->
+  <nav id="navbar">
+    <a href="#hero" class="nav-logo">
+      <span class="nav-logo-main">Heritage Aira Holme</span>
+      <span class="nav-logo-sub">Est. 1870 · Shimla, India</span>
+    </a>
+    <ul class="nav-links">
+      <li><a href="#story">Story</a></li>
+      <li><a href="#rooms">Rooms</a></li>
+      <li><a href="#experience">Experience</a></li>
+      <li><a href="#gallery">Gallery</a></li>
+      <li><a href="#testimonials">Guests</a></li>
+      <li><a href="#booking">Contact</a></li>
+    </ul>
+    <a href="#booking" class="nav-cta">Book Your Stay</a>
+    <div class="nav-toggle" id="navToggle" onclick="toggleMobileMenu()" aria-label="Toggle menu">
+      <span></span><span></span><span></span>
+    </div>
+  </nav>
+
+  <!-- Mobile Menu Overlay -->
+  <div class="mobile-menu" id="mobileMenu">
+    <a href="#story" onclick="closeMobileMenu()">Story</a>
+    <a href="#rooms" onclick="closeMobileMenu()">Rooms</a>
+    <a href="#experience" onclick="closeMobileMenu()">Experience</a>
+    <a href="#gallery" onclick="closeMobileMenu()">Gallery</a>
+    <a href="#testimonials" onclick="closeMobileMenu()">Guests</a>
+    <a href="#booking" onclick="closeMobileMenu()">Contact</a>
+    <a href="#booking" onclick="closeMobileMenu()" class="nav-cta-mobile">Book Your Stay</a>
+  </div>
+
+  <!-- ═══════════════════════════════════════════
+     HERO
+════════════════════════════════════════════ -->
+  <section id="hero">
+    <div class="hero-bg" id="heroBg"></div>
+    <div class="hero-ornament-top"></div>
+    <div class="hero-overlay"></div>
+    <div class="hero-content">
+      <div class="hero-est reveal">
+        <span>Est.</span>1870<span>·</span>Shimla, Himachal Pradesh
+      </div>
+      <h1 class="hero-title">
+        <span class="reveal" id="htl1">Heritage</span>
+        <span class="reveal" id="htl2" style="transition-delay:.1s">Aira Holme</span>
+      </h1>
+      <p class="hero-tagline reveal" style="transition-delay:.2s">
+        A Journey Through Time — A Retreat in Tradition
+      </p>
+      <div class="hero-actions reveal" style="transition-delay:.3s">
+        <a href="#booking" class="btn-primary">Reserve Your Chamber</a>
+        <a href="#story" class="btn-outline">Discover the Estate</a>
+      </div>
+    </div>
+    <div class="hero-scroll">
+      <div class="scroll-line"></div>
+      <div class="scroll-text">Scroll to Explore</div>
+    </div>
+  </section>
+
+  <!-- ═══════════════════════════════════════════
+     MARQUEE
+════════════════════════════════════════════ -->
+  <div class="marquee-band">
+    <div class="marquee-inner">
+      <span class="marquee-item">Colonial Heritage</span>
+      <span class="marquee-item marquee-dot">✦</span>
+      <span class="marquee-item">Est. 1870</span>
+      <span class="marquee-item marquee-dot">✦</span>
+      <span class="marquee-item">Shimla, India</span>
+      <span class="marquee-item marquee-dot">✦</span>
+      <span class="marquee-item">150+ Years of History</span>
+      <span class="marquee-item marquee-dot">✦</span>
+      <span class="marquee-item">Royal Architecture</span>
+      <span class="marquee-item marquee-dot">✦</span>
+      <span class="marquee-item">Himalayan Views</span>
+      <span class="marquee-item marquee-dot">✦</span>
+      <span class="marquee-item">Heritage Homestay</span>
+      <span class="marquee-item marquee-dot">✦</span>
+      <span class="marquee-item">Colonial Heritage</span>
+      <span class="marquee-item marquee-dot">✦</span>
+      <span class="marquee-item">Est. 1870</span>
+      <span class="marquee-item marquee-dot">✦</span>
+      <span class="marquee-item">Shimla, India</span>
+      <span class="marquee-item marquee-dot">✦</span>
+      <span class="marquee-item">150+ Years of History</span>
+      <span class="marquee-item marquee-dot">✦</span>
+      <span class="marquee-item">Royal Architecture</span>
+      <span class="marquee-item marquee-dot">✦</span>
+      <span class="marquee-item">Himalayan Views</span>
+      <span class="marquee-item marquee-dot">✦</span>
+      <span class="marquee-item">Heritage Homestay</span>
+      <span class="marquee-item marquee-dot">✦</span>
+    </div>
+  </div>
+
+  <!-- ═══════════════════════════════════════════
+     STORY
+════════════════════════════════════════════ -->
+  <section id="story">
+    <div class="section-inner">
+      <div class="story-layout">
+        <div class="story-image-wrap reveal-left">
+          <div class="story-frame"></div>
+          <img class="story-image-main"
+            src="image/ANTY.jpeg"
+            alt="Heritage Aira Holme Estate — Shimla" loading="lazy">
+          <div class="story-year-badge">
+            <div class="story-year-num">1870</div>
+            <div class="story-year-label">Est.</div>
+          </div>
+
+          <!-- Owner Name Badge -->
+          <div style="position:absolute; bottom:20px; left:50%; transform:translateX(-50%); background:rgba(0,0,0,0.65); backdrop-filter:blur(6px); border:1px solid var(--gold); border-radius:4px; padding:10px 22px; text-align:center; white-space:nowrap;">
+            <div style="font-family:'Playfair Display', serif; font-size:1.05rem; color:var(--gold); letter-spacing:0.06em; font-weight:600;">Maheep Kaur</div>
+            <div style="font-size:0.72rem; color:rgba(255,255,255,0.75); letter-spacing:0.12em; text-transform:uppercase; margin-top:3px;">Owner &amp; Custodian</div>
+          </div>
+
+        </div>
+        <div class="story-text">
+          <div class="section-label reveal">Our Story</div>
+          <h2 class="section-title reveal">
+            Where Every Wall<br>
+            <em>Whispers History</em>
+          </h2>
+          <div class="divider reveal"></div>
+          <p class="reveal" style="transition-delay:.1s">
+            Nestled in the heart of Kasumpti, Shimla, Heritage Aira Holme stands as one of the oldest surviving colonial
+            structures in the summer capital of British India. Originally erected circa <strong
+              style="color:var(--gold)">1870</strong>, this storied estate has witnessed over a century and a half of
+            Himalayan seasons — its walls etched with the memories of a grander age.
+          </p>
+          <p class="reveal" style="transition-delay:.2s">
+            The building's colonial architecture — characterized by pitched roofs, timber-framed verandahs, and arched
+            windows — remains immaculately preserved. Every corridor breathes the ambiance of a bygone era, adorned with
+            antique furnishings that tell tales of the British Raj and the golden years of Shimla's prominence.
+          </p>
+          <p class="reveal" style="transition-delay:.3s">
+            Today, this distinguished heritage property opens its doors as an intimate homestay — inviting discerning
+            travelers to live inside a piece of living history, within walking distance of the legendary Mall Road and
+            The Ridge.
+          </p>
+          <div class="story-stats reveal" style="transition-delay:.4s">
+            <div class="stat-item">
+              <div class="stat-num">1870</div>
+              <div class="stat-label">Year Constructed</div>
+            </div>
+            <div class="stat-item">
+              <div class="stat-num">150+</div>
+              <div class="stat-label">Years of Heritage</div>
+            </div>
+            <div class="stat-item">
+              <div class="stat-num">4</div>
+              <div class="stat-label">Heritage Rooms</div>
+            </div>
+            <div class="stat-item">
+              <div class="stat-num">∞</div>
+              <div class="stat-label">Himalayan Views</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════════════════════════════════════
+     FEATURES STRIP
+════════════════════════════════════════════ -->
+  <div class="features-strip">
+    <div class="section-inner">
+      <div class="features-grid">
+        <div class="feature-item reveal">
+          <div class="feature-icon">🏛️</div>
+          <div class="feature-name">Colonial Architecture</div>
+          <div class="feature-desc">Preserved British-era structure</div>
+        </div>
+        <div class="feature-item reveal" style="transition-delay:.1s">
+          <div class="feature-icon">🏔️</div>
+          <div class="feature-name">Himalayan Views</div>
+          <div class="feature-desc">Panoramic mountain vistas</div>
+        </div>
+        <div class="feature-item reveal" style="transition-delay:.2s">
+          <div class="feature-icon">🌿</div>
+          <div class="feature-name">Garden Estate</div>
+          <div class="feature-desc">Sprawling heritage garden</div>
+        </div>
+        <div class="feature-item reveal" style="transition-delay:.3s">
+          <div class="feature-icon">🍽️</div>
+          <div class="feature-name">Breakfast</div>
+          <div class="feature-desc">Himachali flavours daily</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ═══════════════════════════════════════════
+     HERITAGE TIMELINE
+════════════════════════════════════════════ -->
+  <section id="timeline">
+    <div class="section-inner">
+      <div style="text-align:center; margin-bottom:1rem">
+        <div class="section-label reveal" style="justify-content:center">The Heritage Timeline</div>
+        <h2 class="section-title reveal" style="text-align:center">
+          A Legacy <em>Carved in Stone</em>
+        </h2>
+      </div>
+      <div class="timeline-wrap">
+        <div class="timeline-line"></div>
+        <div class="timeline-items">
+          <div class="timeline-item reveal">
+            <div class="t-content">
+              <div class="t-year">Circa 1870</div>
+              <div class="t-title">The Foundation Stone</div>
+              <div class="t-desc">Aira Holme is constructed in Kasumpti, Shimla — during the peak of British colonial
+                rule when Shimla served as the summer capital of British India. Built with traditional colonial
+                craftsmanship, the estate embodies the architectural grandeur of the Victorian era.</div>
+            </div>
+            <div class="t-dot"></div>
+            <div class="t-empty"></div>
+          </div>
+          <div class="timeline-item reveal">
+            <div class="t-empty"></div>
+            <div class="t-dot"></div>
+            <div class="t-content">
+              <div class="t-year">Late 1800s</div>
+              <div class="t-title">Shimla's Golden Age</div>
+              <div class="t-desc">As Shimla flourishes as the nerve centre of British India's summer administration,
+                Aira Holme stands among the city's most distinguished colonial residences — bearing witness to the
+                social, political, and cultural life of the subcontinent's most powerful hill station.</div>
+            </div>
+          </div>
+          <div class="timeline-item reveal">
+            <div class="t-content">
+              <div class="t-year">Post Independence</div>
+              <div class="t-title">A Family's Sacred Custodianship</div>
+              <div class="t-desc">The estate passes into the care of a heritage family who dedicate generations to its
+                preservation. Original timber floors, arched windows, verandahs, and period furnishings are meticulously
+                maintained — a labour of love across the decades.</div>
+            </div>
+            <div class="t-dot"></div>
+            <div class="t-empty"></div>
+          </div>
+          <div class="timeline-item reveal">
+            <div class="t-empty"></div>
+            <div class="t-dot"></div>
+            <div class="t-content">
+              <div class="t-year">2024 — Present</div>
+              <div class="t-title">Heritage Homestay Opens Its Doors</div>
+              <div class="t-desc">Heritage Aira Holme welcomes the world — opening its historic chambers to travelers
+                seeking an authentic, living-history experience. The estate becomes Shimla's most intimate colonial
+                retreat, blending 150-year-old charm with the warmth of family hospitality.</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════════════════════════════════════
+     PARALLAX QUOTE
+════════════════════════════════════════════ -->
+  <div class="parallax-quote" id="paralaxQuote">
+    <div class="parallax-bg" id="parallaxBg"></div>
+    <div class="parallax-overlay"></div>
+    <div class="quote-content">
+      <div class="quote-mark reveal">"</div>
+      <p class="quote-text reveal">
+        Staying at Heritage Aira Holme was like stepping into a bygone era of elegance and charm. The attention to
+        detail in preserving its heritage while providing modern comforts is truly commendable.
+      </p>
+      <div class="quote-source reveal">— Akshat kumar </div>
+    </div>
+  </div>
+
+  <!-- ═══════════════════════════════════════════
+     ROOMS
+════════════════════════════════════════════ -->
+  <section id="rooms">
+    <div class="section-inner">
+      <div class="rooms-header">
+        <div>
+          <div class="section-label reveal">Chambers & Suites</div>
+          <h2 class="section-title reveal">Our <em>Heritage Rooms</em></h2>
+          <div class="divider reveal"></div>
+          <p class="reveal" style="color:var(--text-light); max-width:500px; margin-top:.5rem">
+            Each chamber is appointed with antique furnishings, period décor, and modern comforts — a sanctuary steeped
+            in colonial romance, with breakfast included every morning.
+          </p>
+        </div>
+        <a href="#booking" class="btn-outline reveal" style="white-space:nowrap; align-self:flex-end">Enquire About
+          Rooms</a>
+      </div>
+      <div class="rooms-grid">
+        <!-- Standard Room -->
+        <div class="room-card reveal">
+          <img class="room-img" src="https://heritageairaholme.in/wp-content/uploads/2024/04/IMG_3385-1-scaled.jpg"
+            alt="Standard Room — Heritage Aira Holme" loading="lazy">
+          <div class="room-overlay"></div>
+          <div class="room-info">
+            <div class="room-type">Colonial Chamber</div>
+            <div class="room-name">Standard Room</div>
+            <!-- <div class="room-price">₹1,500 · Includes Breakfast</div> -->
+            <div class="room-desc">A cozy heritage chamber for the solo traveller or couple — appointed with a
+              comfortable bed, private bathroom, and period furnishings that recall Shimla's colonial past.</div>
+            <a href="#booking" class="room-btn">Reserve This Room →</a>
+          </div>
+        </div>
+        <!-- Deluxe Room -->
+        <div class="room-card reveal" style="transition-delay:.1s">
+          <img class="room-img" src="https://heritageairaholme.in/wp-content/uploads/2024/04/IMG_3289-2-1024x768.jpg"
+            alt="Deluxe Room — Heritage Aira Holme" loading="lazy">
+          <div class="room-overlay"></div>
+          <div class="room-info">
+            <div class="room-type">Heritage Suite</div>
+            <div class="room-name">Deluxe Room</div>
+            <!-- <div class="room-price">₹1,500 · Includes Breakfast</div> -->
+            <div class="room-desc">Elevated luxury with upgraded furnishings, larger beds, and enhanced bathroom
+              facilities. Every detail designed to indulge the discerning heritage traveler.</div>
+            <a href="#booking" class="room-btn">Reserve This Room →</a>
+          </div>
+        </div>
+        <!-- Executive Room -->
+        <div class="room-card reveal" style="transition-delay:.2s">
+          <img class="room-img" src="https://heritageairaholme.in/wp-content/uploads/2024/04/IMG_3402-1-1024x768.jpg"
+            alt="Executive Room — Heritage Aira Holme" loading="lazy">
+          <div class="room-overlay"></div>
+          <div class="room-info">
+            <div class="room-type">Executive Chamber</div>
+            <div class="room-name">Executive Room</div>
+            <!-- <div class="room-price">₹1,500 · Includes Breakfast</div> -->
+            <div class="room-desc">For the business traveller seeking comfort and productivity — a spacious work desk,
+              ergonomic seating, complimentary Wi-Fi, and an ambiance of refined colonial elegance.</div>
+            <a href="#booking" class="room-btn">Reserve This Room →</a>
+          </div>
+        </div>
+        <!-- Family Room -->
+        <div class="room-card reveal" style="transition-delay:.3s">
+          <img class="room-img" src="https://heritageairaholme.in/wp-content/uploads/2024/04/IMG_3405-1-1024x768.jpg"
+            alt="Family Room — Heritage Aira Holme" loading="lazy">
+          <div class="room-overlay"></div>
+          <div class="room-info">
+            <div class="room-type">Grand Family Suite</div>
+            <div class="room-name">Family Room</div>
+            <!-- <div class="room-price">₹2,000 · Includes Breakfast</div> -->
+            <div class="room-desc">Generously appointed for families — multiple beds, ample space, and thoughtful
+              amenities. The perfect setting for families to create lasting Himalayan memories together.</div>
+            <a href="#booking" class="room-btn">Reserve This Room →</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════════════════════════════════════
+     EXPERIENCE
+════════════════════════════════════════════ -->
+  <section id="experience">
+    <div class="section-inner">
+      <div style="text-align:center; margin-bottom:2rem">
+        <div class="section-label reveal" style="justify-content:center">The Aira Holme Experience</div>
+        <h2 class="section-title reveal" style="text-align:center">
+          Live the <em>Colonial Romance</em>
+        </h2>
+        <div class="divider reveal" style="margin:1.5rem auto"></div>
+      </div>
+      <div class="exp-grid">
+        <div class="exp-card reveal">
+          <div class="exp-num">01</div>
+          <div class="exp-icon">🏔️</div>
+          <div class="exp-title">Himalayan Panoramas</div>
+          <div class="exp-desc">Wake to breathtaking vistas of the surrounding Himalayan ranges — the same timeless view
+            that greeted British officers a century and a half ago. The elevated position of Aira Holme offers
+            unparalleled perspectives of Shimla's forested valleys and snow-capped peaks.</div>
+        </div>
+        <div class="exp-card reveal" style="transition-delay:.1s">
+          <div class="exp-num">02</div>
+          <div class="exp-icon">🌿</div>
+          <div class="exp-title">The Heritage Garden</div>
+          <div class="exp-desc">Wander the estate's sprawling garden — a green sanctuary of seasonal blooms, century-old
+            trees, and colonial landscaping. An ideal retreat for morning contemplation, afternoon reading, or simply
+            absorbing the mountain air in a setting of extraordinary serenity.</div>
+        </div>
+        <div class="exp-card reveal" style="transition-delay:.2s">
+          <div class="exp-num">03</div>
+          <div class="exp-icon">🏛️</div>
+          <div class="exp-title">Colonial Architecture</div>
+          <div class="exp-desc">The estate's original structure — pitched timber roofs, arched verandahs, ornate
+            woodwork, and period-correct interiors — represents some of the finest surviving examples of Victorian
+            colonial architecture in Shimla. A feast for the eyes and the imagination.</div>
+        </div>
+        <div class="exp-card reveal" style="transition-delay:.3s">
+          <div class="exp-num">04</div>
+          <div class="exp-icon">🍵</div>
+          <div class="exp-title">Himachali Hospitality</div>
+          <div class="exp-desc">Experience the legendary warmth of a family-run heritage estate. Mornings begin with
+            locally-crafted breakfast flavours, evenings are filled with personal stories of Shimla's history, and every
+            interaction carries the genuine care of hosts who call this storied home their own.</div>
+        </div>
+        <div class="exp-card reveal" style="transition-delay:.4s">
+          <div class="exp-num">05</div>
+          <div class="exp-icon">🗺️</div>
+          <div class="exp-title">Near Mall Road & Ridge</div>
+          <div class="exp-desc">Perfectly positioned in Kasumpti — a short distance from Shimla's iconic Mall Road, The
+            Ridge, Christ Church, and Jakhu Temple. The estate offers the tranquility of a private retreat with the
+            convenience of Shimla's most celebrated landmarks at your doorstep.</div>
+        </div>
+        <div class="exp-card reveal" style="transition-delay:.5s">
+          <div class="exp-num">06</div>
+          <div class="exp-icon">🕰️</div>
+          <div class="exp-title">A Living Museum</div>
+          <div class="exp-desc">Every corner of Aira Holme tells a story. Antique furnishings, period paintings, vintage
+            photography, and architectural details preserved across generations transform your stay into an immersive
+            journey through 150 years of Shimla's extraordinary history.</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+
+  <section id="gallery">
+    <div class="section-inner">
+      <div style="display:flex; justify-content:space-between; align-items:flex-end">
+        <div>
+          <div class="section-label reveal">The Estate Gallery</div>
+          <h2 class="section-title reveal">Glimpses of <em>Aira Holme</em></h2>
+        </div>
+      </div>
+      <div class="gallery-masonry">
+        <div class="gallery-cell reveal" onclick="openLightbox(this.querySelector('img').src)">
+          <img src="image/shimla-5.PNG" alt="Heritage Aira Holme Estate" loading="lazy">
+          <div class="gallery-cell-overlay">
+            <div class="gallery-zoom-icon">⊕</div>
+          </div>
+        </div>
+        <div class="gallery-cell reveal" style="transition-delay:.1s"
+          onclick="openLightbox(this.querySelector('img').src)">
+          <img src="image/shimla-4.PNG" alt="Standard Room" loading="lazy">
+          <div class="gallery-cell-overlay">
+            <div class="gallery-zoom-icon">⊕</div>
+          </div>
+        </div>
+        <div class="gallery-cell reveal" style="transition-delay:.2s"
+          onclick="openLightbox(this.querySelector('img').src)">
+          <img src="image/shimla-3.PNG" alt="Heritage Bedroom" loading="lazy">
+          <div class="gallery-cell-overlay">
+            <div class="gallery-zoom-icon">⊕</div>
+          </div>
+        </div>
+        <div class="gallery-cell reveal" style="transition-delay:.3s"
+          onclick="openLightbox(this.querySelector('img').src)">
+          <img src="image/shimla-2.PNG" alt="Executive Room" loading="lazy">
+          <div class="gallery-cell-overlay">
+            <div class="gallery-zoom-icon">⊕</div>
+          </div>
+        </div>
+        <div class="gallery-cell reveal" style="transition-delay:.4s"
+          onclick="openLightbox(this.querySelector('img').src)">
+          <img src="image/shimla-1.PNG" alt="Family Room" loading="lazy">
+          <div class="gallery-cell-overlay">
+            <div class="gallery-zoom-icon">⊕</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+
+  <section id="testimonials">
+    <div class="section-inner">
+      <div class="section-label reveal" style="justify-content:center; margin-bottom:4rem">
+        Voices of Our Guests
+      </div>
+      <div class="testimonials-wrap">
+        <div class="testimonial-slider">
+          <div class="testimonial-track" id="testimonialTrack">
+            <!-- Slide 1 -->
+            <div class="testimonial-slide">
+              <div>
+                <div class="testimonial-quote reveal">
+                  Staying at Heritage Aira Holme was like stepping into a bygone era of elegance and charm. The
+                  attention to detail in preserving its heritage while providing modern comforts is truly commendable.
+                  Our stay was nothing short of magical.
+                </div>
+                <div class="testimonial-meta reveal">
+                  <div class="testimonial-name">Vinod Kumar</div>
+                  <div class="testimonial-title">Valued Guest</div>
+                </div>
+              </div>
+              <div class="testimonial-visual reveal">
+                <div class="t-rating">★★★★★</div>
+                <img src="image/aira-holems.jpg"
+                  alt="Heritage Room" style="width:100%; aspect-ratio:4/3; object-fit:cover; opacity:.7" loading="lazy">
+              </div>
+            </div>
+            <!-- Slide 2 -->
+            <div class="testimonial-slide">
+              <div>
+                <div class="testimonial-quote">
+                  From the moment we arrived, we were greeted with warmth and hospitality. The staff at Heritage Aira
+                  Holme went above and beyond to ensure our stay was comfortable and memorable. The stunning views and
+                  serene ambiance made it a perfect retreat.
+                </div>
+                <div class="testimonial-meta">
+                  <div class="testimonial-name">Satish</div>
+                  <div class="testimonial-title">Valued Guest</div>
+                </div>
+              </div>
+              <div class="testimonial-visual">
+                <div class="t-rating">★★★★★</div>
+                <img src="image/IMG_9081.PNG"
+                  alt="Standard Room" style="width:100%; aspect-ratio:4/3; object-fit:cover; opacity:.7" loading="lazy">
+              </div>
+            </div>
+            <!-- Slide 3 -->
+            <div class="testimonial-slide">
+              <div>
+                <div class="testimonial-quote">
+                  Our wedding at Heritage Aira Holme was a dream come true. The historic backdrop provided a romantic
+                  setting, and the impeccable service surpassed all expectations. Our guests were enchanted by the
+                  beauty of the venue.
+                </div>
+                <div class="testimonial-meta">
+                  <div class="testimonial-name">Seema Gupta</div>
+                  <div class="testimonial-title">Valued Guest</div>
+                </div>
+              </div>
+              <div class="testimonial-visual">
+                <div class="t-rating">★★★★★</div>
+                <img
+                  src="https://heritageairaholme.in/wp-content/uploads/2024/04/WhatsApp-Image-2024-04-16-at-00.24.05-1024x768.jpeg"
+                  alt="Heritage Estate" style="width:100%; aspect-ratio:4/3; object-fit:cover; opacity:.7"
+                  loading="lazy">
+              </div>
+            </div>
+            <!-- Slide 4 -->
+            <div class="testimonial-slide">
+              <div>
+                <div class="testimonial-quote">
+                  As a business traveler, I appreciate a hotel that combines convenience with luxury. Heritage Aira
+                  Holme exceeded my expectations with its well-appointed rooms, excellent amenities, and peaceful
+                  atmosphere — perfect for both work and relaxation.
+                </div>
+                <div class="testimonial-meta">
+                  <div class="testimonial-name">Prakash Chauhan</div>
+                  <div class="testimonial-title">Valued Guest</div>
+                </div>
+              </div>
+              <div class="testimonial-visual">
+                <div class="t-rating">★★★★★</div>
+                <img src="image/SEANRY.jpeg"
+                  alt="Family Room" style="width:100%; aspect-ratio:4/3; object-fit:cover; opacity:.7" loading="lazy">
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="testimonial-controls reveal">
+          <button class="t-btn" onclick="prevTestimonial()">←</button>
+          <button class="t-btn" onclick="nextTestimonial()">→</button>
+          <span id="t-counter"
+            style="font-family:var(--serif-display);font-size:.55rem;letter-spacing:.3em;color:var(--text-dim);margin-left:1rem;text-transform:uppercase">01
+            / 04</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════════════════════════════════════
+     BOOKING
+════════════════════════════════════════════ -->
+  <section id="booking">
+    <div class="booking-bg-text">BOOK</div>
+    <div class="section-inner">
+      <div style="text-align:center; margin-bottom:5rem">
+        <div class="section-label reveal" style="justify-content:center">Reserve Your Stay</div>
+        <h2 class="section-title reveal" style="text-align:center">Begin <em>Your Story</em> Here</h2>
+        <div class="divider reveal" style="margin:1.5rem auto"></div>
+      </div>
+      <div class="booking-layout">
+        <!-- Form -->
+        <div>
+          <p class="reveal" style="color:var(--text-light); margin-bottom:2.5rem; font-size:1.05rem; font-style:italic">
+            Send us an inquiry and our heritage hosts will respond within the hour — personally.
+          </p>
+          <form class="booking-form" onsubmit="handleBooking(event)">
+            <div class="form-row">
+              <div class="form-group reveal">
+                <label class="form-label">First Name</label>
+                <input type="text" id="bookingFirst" class="form-input" placeholder="Your name" required>
+              </div>
+              <div class="form-group reveal">
+                <label class="form-label">Last Name</label>
+                <input type="text" id="bookingLast" class="form-input" placeholder="Last name" required>
+              </div>
+            </div>
+            <div class="form-group reveal">
+              <label class="form-label">Email Address</label>
+              <input type="email" id="bookingEmail" class="form-input" placeholder="your@email.com" required>
+            </div>
+            <div class="form-group reveal">
+              <label class="form-label">Phone Number</label>
+              <div class="phone-wrapper">
+                <span class="phone-flag">🇮🇳 +91</span>
+                <input type="tel" id="bookingPhone" class="form-input" placeholder="98765 43210" pattern="[0-9]{10}" maxlength="10" required>
+              </div>
+            </div>
+            <div class="form-row">
+              <div class="form-group reveal">
+                <label class="form-label">Check-in Date</label>
+                <input type="date" id="bookingCheckin" class="form-input">
+              </div>
+              <div class="form-group reveal">
+                <label class="form-label">Check-out Date</label>
+                <input type="date" id="bookingCheckout" class="form-input">
+              </div>
+            </div>
+            <div class="form-row">
+              <div class="form-group reveal">
+                <label class="form-label">Room Type</label>
+                <select id="bookingRoom" class="form-select">
+                  <option value="">Select a Chamber</option>
+                  <option>Standard Room </option>
+                  <option>Deluxe Room </option>
+                  <option>Executive Room </option>
+                  <option>Family Room</option>
+                </select>
+              </div>
+              <div class="form-group reveal">
+                <label class="form-label">Number of Guests</label>
+                <select id="bookingGuests" class="form-select">
+                  <option>1 Guest</option>
+                  <option>2 Guests</option>
+                  <option>3 Guests</option>
+                  <option>4 Guests</option>
+                  <option>5+ Guests</option>
+                </select>
+              </div>
+            </div>
+            <div class="form-group reveal">
+              <label class="form-label">Special Requests</label>
+              <textarea id="bookingRequests" class="form-textarea"
+                placeholder="Any special requests, dietary requirements, or questions for our hosts..."></textarea>
+            </div>
+            <button type="submit" class="btn-primary reveal" style="width:100%; text-align:center; font-size:.7rem; display:flex; align-items:center; justify-content:center; gap:.8rem;">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z"/></svg>
+              Book Now via WhatsApp
+            </button>
+          </form>
+        </div>
+        <!-- Contact Info -->
+        <div class="booking-contact">
+          <div class="contact-item reveal">
+            <div class="contact-icon">📞</div>
+            <div>
+              <div class="contact-label">Call the Estate</div>
+              <div class="contact-value">
+                <a href="tel:+919805621233">+91 98056 21233</a><br>
+                <a href="tel:+916284248828">+91 62842 48828</a>
+              </div>
+            </div>
+          </div>
+          <div class="contact-item reveal">
+            <div class="contact-icon">✉️</div>
+            <div>
+              <div class="contact-label">Email the Hosts</div>
+              <div class="contact-value">
+                <a href="/cdn-cgi/l/email-protection#26474f54474e494a4b4341534355524e4953554366414b474f4a0845494b"><span class="__cf_email__" data-cfemail="e2838b90838a8d8e8f8785978791968a8d979187a2858f838b8ecc818d8f">[email&#160;protected]</span></a>
+              </div>
+            </div>
+          </div>
+          <div class="contact-item reveal">
+            <div class="contact-icon">📍</div>
+            <div>
+              <div class="contact-label">Find the Estate</div>
+              <div class="contact-value">
+                Aira Holme, Near Ayurvedic Hospital,<br>
+                Chotta Shimla, Shimla,<br>
+                Himachal Pradesh 171009
+              </div>
+            </div>
+          </div>
+          <a href="https://wa.me/+916284248828?text=Hello%2C%20I%20would%20like%20to%20enquire%20about%20a%20stay%20at%20Heritage%20Aira%20Holme"
+            target="_blank" class="whatsapp-btn reveal">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+              <path
+                d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z" />
+            </svg>
+            WhatsApp the Estate
+          </a>
+          <div class="contact-item reveal" style="background:rgba(196,147,58,.06)">
+            <div class="contact-icon">🏛️</div>
+            <div>
+              <div class="contact-label">Heritage Since</div>
+              <div class="contact-value"
+                style="font-family:var(--serif-display); font-size:2rem; color:var(--gold); font-weight:600">1870</div>
+              <div
+                style="font-family:var(--serif-body); font-size:.85rem; color:var(--text-dim); font-style:italic; margin-top:.3rem">
+                One of Shimla's oldest colonial estates</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════════════════════════════════════
+     MAP
+════════════════════════════════════════════ -->
+  <!-- <section id="location">
+    <iframe
+      src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3438.292!2d77.176936!3d31.101!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3904e1b43b3b3b3b%3A0x3b3b3b3b3b3b3b3b!2sKasumpti%2C%20Shimla%2C%20Himachal%20Pradesh!5e0!3m2!1sen!2sin!4v1617955200000!5m2!1sen!2sin"
+      allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"
+      title="Heritage Aira Holme Location Map">
+    </iframe>
+    <div class="location-overlay-text">
+      <div class="section-label" style="margin-bottom:1rem">Our Address</div>
+      <div class="section-title" style="font-size:1.8rem; margin-bottom:1rem">Find<br><em>Aira Holme</em></div>
+      <div class="divider" style="margin:1rem 0"></div>
+      <p style="font-family:var(--serif-body); color:var(--text-light); font-size:.95rem; line-height:1.7">
+        Near Ayurvedic Hospital<br>
+        Chotta Shimla, Shimla<br>
+        Himachal Pradesh 171009<br><br>
+        <a href="tel:+918219257571" style="color:var(--gold); text-decoration:none">+91 82192 57571</a>
+      </p>
+    </div>
+  </section> -->
+
+  <!-- ═══════════════════════════════════════════
+     FOOTER
+════════════════════════════════════════════ -->
+  <footer>
+    <div class="footer-inner">
+      <div class="footer-crest">
+        <div class="footer-crest-title">AIRA HOLME</div>
+      </div>
+      <div class="footer-top">
+        <div class="footer-brand">
+          <a href="#hero" class="footer-logo">Heritage Aira Holme</a>
+          <p>
+            A distinguished colonial estate in the heart of Shimla, established circa 1870. One of the oldest surviving
+            heritage structures in the summer capital of British India — now open as an intimate heritage homestay.
+          </p>
+          <div
+            style="margin-top:1.5rem; font-family:var(--serif-display); font-size:.55rem; letter-spacing:.25em; text-transform:uppercase; color:var(--text-dim)">
+            Est. 1870 · Shimla, India</div>
+        </div>
+        <div>
+          <div class="footer-heading">Quick Links</div>
+          <ul class="footer-links">
+            <li><a href="#story">Our Story</a></li>
+            <li><a href="#timeline">Heritage Timeline</a></li>
+            <li><a href="#rooms">Rooms & Suites</a></li>
+            <li><a href="#experience">Experiences</a></li>
+            <li><a href="#gallery">Gallery</a></li>
+            <li><a href="#testimonials">Guest Stories</a></li>
+          </ul>
+        </div>
+        <div>
+          <div class="footer-heading">The Estate</div>
+          <ul class="footer-links">
+            <li><a href="#booking">Book Your Stay</a></li>
+            <li><a href="#booking">Room Enquiry</a></li>
+            <li><a href="#location">Find Us</a></li>
+          </ul>
+        </div>
+        <div>
+          <div class="footer-heading">Contact Us</div>
+          <div class="footer-contact-item">
+            <div class="footer-contact-icon">📞</div>
+            <div class="footer-contact-text">
+              <a href="tel:919805621233">+91 98056 21233</a><br>
+              <a href="tel:+916284248828">+91 62842 48828</a>
+            </div>
+          </div>
+          <div class="footer-contact-item">
+            <div class="footer-contact-icon">✉️</div>
+            <div class="footer-contact-text">
+              <a href="/cdn-cgi/l/email-protection#b1d0c3c4dfc2d9d0c3dcd08889898385f1d6dcd0d8dd9fd2dedc">@gmail.com</a>
+            </div>
+          </div>
+          <div class="footer-contact-item">
+            <div class="footer-contact-icon">📍</div>
+            <div class="footer-contact-text">
+              Aira Holme, Near Ayurvedic Hospital,<br>
+              Chotta Shimla, Shimla HP 171009
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <div class="footer-copy">
+          © 2024 Heritage Aira Holme — Est. 1870 · All Rights Reserved · Shimla, Himachal Pradesh, India ·
+          <a href="https://stackup.digital" target="_blank">STACKUP.DIGITAL</a>
+        </div>
+        <div class="social-links">
+          <a href="https://wa.me/919805621233" target="_blank" class="social-link" title="WhatsApp">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
+              <path
+                d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z" />
+            </svg>
+          </a>
+          <a href="/cdn-cgi/l/email-protection#7d1c140f1c15121110181a08180e091512080e183d1a101c1411531e1210" class="social-link" title="Email">✉</a>
+          <a href="tel:+919805621233" class="social-link" title="Call">☎</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <!-- ═══════════════════════════════════════════
+     JAVASCRIPT
+════════════════════════════════════════════ -->
+  <script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
+    /* ══════════════════════════════════
+       LENIS SMOOTH SCROLL
+    ══════════════════════════════════ */
+    const lenis = new Lenis({
+      duration: 1.2,
+      easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
+      smooth: true,
+      smoothTouch: false,
+      touchMultiplier: 2,
+    });
+
+    function raf(time) {
+      lenis.raf(time);
+      requestAnimationFrame(raf);
+    }
+    requestAnimationFrame(raf);
+
+    /* ── CURSOR (desktop only) ── */
+    const isMobile = /Mobi|Android/i.test(navigator.userAgent) || window.innerWidth <= 768;
+    if (!isMobile) {
+      const cursor = document.getElementById('cursor');
+      const ring = document.getElementById('cursor-ring');
+      let mx = 0, my = 0, rx = 0, ry = 0;
+
+      document.addEventListener('mousemove', e => { mx = e.clientX; my = e.clientY; }, { passive: true });
+
+      function animateCursor() {
+        cursor.style.transform = `translate(calc(${mx}px - 50%), calc(${my}px - 50%))`;
+        rx += (mx - rx) * .1;
+        ry += (my - ry) * .1;
+        ring.style.transform = `translate(calc(${rx}px - 50%), calc(${ry}px - 50%))`;
+        requestAnimationFrame(animateCursor);
+      }
+      animateCursor();
+
+      document.querySelectorAll('a, button, .room-card, .gallery-cell').forEach(el => {
+        el.addEventListener('mouseenter', () => {
+          cursor.style.width = '24px'; cursor.style.height = '24px';
+          ring.style.width = '64px'; ring.style.height = '64px';
+        });
+        el.addEventListener('mouseleave', () => {
+          cursor.style.width = '12px'; cursor.style.height = '12px';
+          ring.style.width = '40px'; ring.style.height = '40px';
+        });
+      });
+    }
+
+    /* ── LOADER ── */
+    window.addEventListener('load', () => {
+      setTimeout(() => {
+        gsap.to('#loader', {
+          opacity: 0, duration: .8, delay: .3, ease: 'power2.inOut',
+          onComplete: () => {
+            document.getElementById('loader').style.display = 'none';
+            initAnimations();
+          }
+        });
+      }, 2000);
+    });
+
+    /* ── SCROLL PROGRESS ── */
+    lenis.on('scroll', ({ scroll, limit }) => {
+      document.getElementById('progress-bar').style.width = (scroll / limit * 100) + '%';
+      document.getElementById('navbar').classList.toggle('scrolled', scroll > 80);
+    });
+
+    /* ── GSAP ANIMATIONS ── */
+    function initAnimations() {
+      gsap.registerPlugin(ScrollTrigger, ScrollToPlugin);
+
+      // Sync Lenis with GSAP ScrollTrigger
+      lenis.on('scroll', ScrollTrigger.update);
+      gsap.ticker.add((time) => { lenis.raf(time * 1000); });
+      gsap.ticker.lagSmoothing(0);
+
+      /* Hero BG parallax */
+      gsap.to('#heroBg', {
+        yPercent: 18,
+        ease: 'none',
+        scrollTrigger: { trigger: '#hero', start: 'top top', end: 'bottom top', scrub: 1 }
+      });
+
+      /* Parallax quote bg */
+      gsap.to('#parallaxBg', {
+        yPercent: 15,
+        ease: 'none',
+        scrollTrigger: { trigger: '#paralaxQuote', start: 'top bottom', end: 'bottom top', scrub: 1 }
+      });
+
+      /* Hero title */
+      gsap.from('#htl1', { y: 80, opacity: 0, duration: 1.2, ease: 'power3.out', delay: .2 });
+      gsap.from('#htl2', { y: 80, opacity: 0, duration: 1.2, ease: 'power3.out', delay: .4 });
+
+      /* Reveal elements */
+      gsap.utils.toArray('.reveal').forEach(el => {
+        gsap.fromTo(el, { y: 40, opacity: 0 }, {
+          y: 0, opacity: 1, duration: .9, ease: 'power3.out',
+          scrollTrigger: { trigger: el, start: 'top 90%', toggleActions: 'play none none none' }
+        });
+      });
+      gsap.utils.toArray('.reveal-left').forEach(el => {
+        gsap.fromTo(el, { x: -60, opacity: 0 }, {
+          x: 0, opacity: 1, duration: 1, ease: 'power3.out',
+          scrollTrigger: { trigger: el, start: 'top 88%', toggleActions: 'play none none none' }
+        });
+      });
+      gsap.utils.toArray('.reveal-right').forEach(el => {
+        gsap.fromTo(el, { x: 60, opacity: 0 }, {
+          x: 0, opacity: 1, duration: 1, ease: 'power3.out',
+          scrollTrigger: { trigger: el, start: 'top 88%', toggleActions: 'play none none none' }
+        });
+      });
+      gsap.utils.toArray('.reveal-scale').forEach(el => {
+        gsap.fromTo(el, { scale: .95, opacity: 0 }, {
+          scale: 1, opacity: 1, duration: .9, ease: 'power3.out',
+          scrollTrigger: { trigger: el, start: 'top 88%', toggleActions: 'play none none none' }
+        });
+      });
+
+      /* Stats counter */
+      document.querySelectorAll('.stat-num').forEach(stat => {
+        const raw = stat.textContent;
+        const num = parseInt(raw);
+        if (!isNaN(num) && raw.includes('+')) {
+          ScrollTrigger.create({
+            trigger: stat, start: 'top 85%', once: true,
+            onEnter: () => {
+              gsap.fromTo({ val: 0 }, { val: num }, {
+                duration: 2, ease: 'power2.out',
+                onUpdate() { stat.textContent = Math.floor(this.targets()[0].val) + '+'; }
+              });
+            }
+          });
+        }
+      });
+
+      /* Timeline stagger */
+      gsap.utils.toArray('.timeline-item').forEach((item, i) => {
+        gsap.fromTo(item, { opacity: 0, y: 40 }, {
+          opacity: 1, y: 0, duration: .8, ease: 'power3.out',
+          scrollTrigger: { trigger: item, start: 'top 88%', toggleActions: 'play none none none' },
+          delay: i * .1
+        });
+      });
+
+      /* Experience cards */
+      gsap.utils.toArray('.exp-card').forEach((card, i) => {
+        gsap.fromTo(card, { opacity: 0, y: 50 }, {
+          opacity: 1, y: 0, duration: .7, ease: 'power3.out', delay: (i % 2) * .12,
+          scrollTrigger: { trigger: card, start: 'top 90%', toggleActions: 'play none none none' }
+        });
+      });
+
+      /* Gallery cells */
+      gsap.utils.toArray('.gallery-cell').forEach((cell, i) => {
+        gsap.fromTo(cell, { opacity: 0, scale: .94 }, {
+          opacity: 1, scale: 1, duration: .7, ease: 'power3.out', delay: i * .07,
+          scrollTrigger: { trigger: cell, start: 'top 90%', toggleActions: 'play none none none' }
+        });
+      });
+
+      /* Booking bg text parallax */
+      gsap.to('.booking-bg-text', {
+        yPercent: -20, ease: 'none',
+        scrollTrigger: { trigger: '#booking', start: 'top bottom', end: 'bottom top', scrub: 1 }
+      });
+    }
+
+    /* ── TESTIMONIALS ── */
+    let tCurrent = 0;
+    const tTotal = 4;
+    function updateTestimonial() {
+      document.getElementById('testimonialTrack').style.transform = `translateX(-${tCurrent * 100}%)`;
+      document.getElementById('t-counter').textContent =
+        String(tCurrent + 1).padStart(2, '0') + ' / ' + String(tTotal).padStart(2, '0');
+    }
+    function nextTestimonial() { tCurrent = (tCurrent + 1) % tTotal; updateTestimonial(); }
+    function prevTestimonial() { tCurrent = (tCurrent - 1 + tTotal) % tTotal; updateTestimonial(); }
+    setInterval(nextTestimonial, 7000);
+
+    /* ── LIGHTBOX ── */
+    function openLightbox(src) {
+      document.getElementById('lightbox-img').src = src;
+      document.getElementById('lightbox').classList.add('active');
+      lenis.stop();
+    }
+    document.getElementById('lightbox-close').onclick = () => {
+      document.getElementById('lightbox').classList.remove('active');
+      lenis.start();
+    };
+    document.getElementById('lightbox').onclick = e => {
+      if (e.target === document.getElementById('lightbox')) {
+        document.getElementById('lightbox').classList.remove('active');
+        lenis.start();
+      }
+    };
+
+    /* ── SMOOTH SCROLL (nav links via Lenis) ── */
+    document.querySelectorAll('a[href^="#"]').forEach(a => {
+      a.addEventListener('click', e => {
+        const id = a.getAttribute('href');
+        if (id === '#') return;
+        const target = document.querySelector(id);
+        if (target) {
+          e.preventDefault();
+          lenis.scrollTo(target, { offset: -80, duration: 1.4, easing: (t) => 1 - Math.pow(1 - t, 5) });
+        }
+      });
+    });
+
+    /* ── BOOKING FORM → WHATSAPP ── */
+    function handleBooking(e) {
+      e.preventDefault();
+
+      const firstName   = document.getElementById('bookingFirst').value.trim();
+      const lastName    = document.getElementById('bookingLast').value.trim();
+      const email       = document.getElementById('bookingEmail').value.trim();
+      const phone       = document.getElementById('bookingPhone').value.trim();
+      const checkin     = document.getElementById('bookingCheckin').value;
+      const checkout    = document.getElementById('bookingCheckout').value;
+      const roomType    = document.getElementById('bookingRoom').value;
+      const guests      = document.getElementById('bookingGuests').value;
+      const requests    = document.getElementById('bookingRequests').value.trim();
+
+      const formatDate = (d) => {
+        if (!d) return 'Not specified';
+        const dt = new Date(d);
+        return dt.toLocaleDateString('en-IN', { day: 'numeric', month: 'long', year: 'numeric' });
+      };
+
+      const message = [
+        '🏛️ *New Booking Enquiry — Heritage Aira Holme*',
+        '━━━━━━━━━━━━━━━━━━━━━━',
+        `👤 *Guest Name:* ${firstName} ${lastName}`,
+        `📱 *Phone:* +91 ${phone}`,
+        `✉️ *Email:* ${email}`,
+        '━━━━━━━━━━━━━━━━━━━━━━',
+        `📅 *Check-in:* ${formatDate(checkin)}`,
+        `📅 *Check-out:* ${formatDate(checkout)}`,
+        `🛏️ *Room Type:* ${roomType || 'Not selected'}`,
+        `👥 *Guests:* ${guests}`,
+        '━━━━━━━━━━━━━━━━━━━━━━',
+        requests ? `📝 *Special Requests:*\n${requests}` : '📝 *Special Requests:* None',
+        '━━━━━━━━━━━━━━━━━━━━━━',
+        '_Sent via heritageairaholme.in booking form_'
+      ].join('\n');
+
+      const waNumber = '916284248828';
+      const waURL = `https://wa.me/${waNumber}?text=${encodeURIComponent(message)}`;
+
+      // Visual feedback
+      const btn = e.target.querySelector('button[type="submit"]');
+      btn.innerHTML = '✓ Redirecting to WhatsApp...';
+      btn.style.background = 'var(--bark)';
+      btn.disabled = true;
+
+      setTimeout(() => {
+        window.open(waURL, '_blank');
+        setTimeout(() => {
+          btn.innerHTML = `<svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z"/></svg> Book Now via WhatsApp`;
+          btn.style.background = '';
+          btn.disabled = false;
+          e.target.reset();
+        }, 3000);
+      }, 600);
+    }
+
+    /* ── MOBILE NAV ── */
+    function toggleMobileMenu() {
+      const menu = document.getElementById('mobileMenu');
+      const toggle = document.getElementById('navToggle');
+      const isOpen = menu.classList.contains('open');
+      if (isOpen) {
+        menu.classList.remove('open');
+        toggle.classList.remove('open');
+        lenis.start();
+      } else {
+        menu.classList.add('open');
+        toggle.classList.add('open');
+        lenis.stop();
+      }
+    }
+
+    function closeMobileMenu() {
+      document.getElementById('mobileMenu').classList.remove('open');
+      document.getElementById('navToggle').classList.remove('open');
+      lenis.start();
+    }
+
+    /* ── MOUSE PARALLAX (Hero) ── */
+    document.addEventListener('mousemove', e => {
+      const xPos = (e.clientX / window.innerWidth - 0.5) * 15;
+      const yPos = (e.clientY / window.innerHeight - 0.5) * 15;
+      gsap.to('#heroBg', { x: xPos, y: yPos, duration: 1.8, ease: 'power2.out' });
+    }, { passive: true });
+
+    /* ── PAGE OVERLAYS ── */
+    function openPage(id) {
+      const page = document.getElementById(id);
+      if (!page) return;
+      page.style.display = 'block';
+      requestAnimationFrame(() => page.classList.add('open'));
+      lenis.stop();
+    }
+
+    function closePage(id) {
+      const page = document.getElementById(id);
+      if (!page) return;
+      page.classList.remove('open');
+      setTimeout(() => { page.style.display = 'none'; }, 500);
+      lenis.start();
+    }
+
+    /* ── RESIZE HANDLER ── */
+    window.addEventListener('resize', () => {
+      ScrollTrigger.refresh();
+    }, { passive: true });
+
+  </script>
+</body>
+</html>
